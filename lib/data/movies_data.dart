@@ -15,4 +15,11 @@ final moviesData = [
     year: '2011',
     description: 'Very good movie',
   ),
+  Movie(
+    title: 'The Godfather',
+    image: 'https://s9.opensubtitles.com/features/0/6/5/515560.jpg',
+    year: '1972',
+    description:
+        'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+  ),
 ];

@@ -10,7 +10,7 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Card(
-      elevation: 7,
+      elevation: 4,
       child: InkWell(
         onTap: onTap,
         child: Column(
@@ -39,8 +39,16 @@ class MovieCard extends StatelessWidget {
                       child: Text(
                         movie.title,
                         style: theme.textTheme.titleMedium,
-                        maxLines: 3,
+                        maxLines: 4,
                         overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        movie.isWatched == false
+                            ? 'Not rated'
+                            : movie.rating.toString(),
                       ),
                     ),
                   ],

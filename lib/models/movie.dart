@@ -9,6 +9,7 @@ class Movie {
   final String year;
   final String description;
   bool isWatched;
+  int? rating;
 
   Movie({
     String? id,
@@ -17,5 +18,6 @@ class Movie {
     required this.year,
     required this.description,
     this.isWatched = false,
+    this.rating,
   }) : id = id ?? uuid.v4();
 }
