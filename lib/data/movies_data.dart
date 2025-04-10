@@ -3,23 +3,47 @@ import '../models/movie.dart';
 final moviesData = [
   Movie(
     title: 'The Shawshank Redemption',
-    image:
-        'https://images.squarespace-cdn.com/content/v1/5c75dfa97d0c9166551f52b1/9351f4e2-94f9-42e2-81df-003d5fe7b8e0/9964546b0ba1f6e14a6045e34b341f8ca2a3569752c5afed95b89682fcde1a68._RI_V_TTW_.jpg?format=2500w',
+    image: 'https://goo.su/8sgTFU',
     year: '1994',
     description:
         'A banker convicted of uxoricide forms a friendship over a quarter century with a hardened convict, while maintaining his innocence and trying to remain hopeful through simple compassion.',
   ),
   Movie(
     title: '1+1',
-    image: 'https://upload.wikimedia.org/wikipedia/ru/b/b9/Intouchables.jpg',
+    image: 'https://goo.su/aY4Cw',
     year: '2011',
     description: 'Very good movie',
   ),
   Movie(
     title: 'The Godfather',
-    image: 'https://s9.opensubtitles.com/features/0/6/5/515560.jpg',
+    image: 'https://goo.su/Ystw',
     year: '1972',
     description:
         'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+  ),
+  Movie(
+    title: 'Groundhog Day',
+    image: 'https://goo.su/3jFdXnn',
+    year: '1993',
+    description:
+        'Bill Murray is at the height of his (eventually) lovable schmuck powers as narcissistic weatherman Phil Connors.',
+    isWatched: true,
+    rating: 3,
+  ),
+  Movie(
+    title: 'Paddington 2',
+    image: 'https://goo.su/qDQNHZR',
+    year: '2017',
+    description:
+        'When the first Paddington was on the way, early trailers didnt look entirely promising',
+    isWatched: true,
+  ),
+  Movie(
+    title: 'Amélie',
+    image: 'https://surl.li/pkuzak',
+    year: '2001',
+    description:
+        'Sure, a cynic could read the film as the story of Audrey Tautous monomaniacal title characters relentless, somewhat stalkerish pursuit of the hapless Nino',
+    isWatched: true,
   ),
 ];

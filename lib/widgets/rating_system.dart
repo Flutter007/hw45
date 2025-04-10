@@ -3,18 +3,13 @@ import 'package:hw45/widgets/rating_button.dart';
 
 class RatingSystem extends StatelessWidget {
   final Function(int) selectRating;
-  final void Function() changeState;
 
-  const RatingSystem({
-    super.key,
-    required this.selectRating,
-    required this.changeState,
-  });
+  const RatingSystem({super.key, required this.selectRating});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400,
+      width: 360,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

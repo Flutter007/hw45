@@ -15,7 +15,6 @@ class RatingButton extends StatefulWidget {
 
 class _RatingButtonState extends State<RatingButton> {
   bool isChanged = false;
-
   void changeIsChanged() {
     setState(() {
       isChanged = !isChanged;
@@ -24,15 +23,17 @@ class _RatingButtonState extends State<RatingButton> {
 
   @override
   Widget build(BuildContext context) {
+    final themeColor = Theme.of(context).colorScheme;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      padding: EdgeInsets.symmetric(horizontal: 4),
       child: TextButton(
         onPressed: () {
           widget.rateMovie(int.parse(widget.rating));
           changeIsChanged();
         },
         style: TextButton.styleFrom(
-          backgroundColor: isChanged ? Colors.black87 : Colors.green.shade300,
+          backgroundColor:
+              isChanged ? themeColor.onSurface : themeColor.onPrimaryContainer,
           shape: RoundedRectangleBorder(
             borderRadius:
                 isChanged
@@ -45,7 +46,7 @@ class _RatingButtonState extends State<RatingButton> {
           style: TextStyle(
             fontSize: 23,
             fontWeight: FontWeight.bold,
-            color: isChanged ? Colors.white : Colors.black87,
+            color: isChanged ? themeColor.surface : themeColor.onSurface,
           ),
         ),
       ),

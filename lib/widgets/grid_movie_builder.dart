@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../data/movies_data.dart';
-
+import 'package:hw45/data/movies_data.dart';
 import '../screens/movie_info_screen.dart';
 import 'movie_card.dart';
 
@@ -25,8 +23,7 @@ class _GridMovieBuilderState extends State<GridMovieBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    final sortedMovies =
-        moviesData.where((element) => element.isWatched == false).toList();
+    final sortedMovies = moviesData.where((m) => m.isWatched == true).toList();
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -37,7 +34,7 @@ class _GridMovieBuilderState extends State<GridMovieBuilder> {
       itemBuilder:
           (ctx, index) => MovieCard(
             movie: sortedMovies[index],
-            onTap: () => goToWatch(moviesData[index].id),
+            onTap: () => goToWatch(sortedMovies[index].id),
           ),
       itemCount: sortedMovies.length,
     );

@@ -20,8 +20,8 @@ class MovieCard extends StatelessWidget {
               height: 160,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
                 ),
                 image: DecorationImage(
                   image: NetworkImage(movie.image),
@@ -46,7 +46,7 @@ class MovieCard extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        movie.isWatched == false
+                        movie.rating == null
                             ? 'Not rated'
                             : movie.rating.toString(),
                       ),
