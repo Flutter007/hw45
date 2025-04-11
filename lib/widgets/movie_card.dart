@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hw45/models/movie.dart';
+import 'package:hw45/widgets/film_rating.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -10,45 +11,47 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Card(
-      elevation: 4,
+      elevation: 6,
       child: InkWell(
         onTap: onTap,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              height: 160,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+            Stack(
+              children: [
+                Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                    ),
+                    image: DecorationImage(
+                      image: NetworkImage(movie.image),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
-                image: DecorationImage(
-                  image: NetworkImage(movie.image),
-                  fit: BoxFit.cover,
-                ),
-              ),
+                if (movie.rating != null && movie.isWatched == true)
+                  Positioned(
+                    bottom: 0,
+                    right: 10,
+                    child: FilmRating(rating: movie.rating.toString()),
+                  ),
+              ],
             ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.all(15),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Text(
                         movie.title,
                         style: theme.textTheme.titleMedium,
-                        maxLines: 4,
+                        maxLines: 3,
                         overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        movie.rating == null
-                            ? 'Not rated'
-                            : movie.rating.toString(),
                       ),
                     ),
                   ],

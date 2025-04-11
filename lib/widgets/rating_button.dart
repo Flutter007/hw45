@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hw45/theme/light_theme.dart';
 
 class RatingButton extends StatefulWidget {
   final Function(int) rateMovie;
@@ -23,7 +24,6 @@ class _RatingButtonState extends State<RatingButton> {
 
   @override
   Widget build(BuildContext context) {
-    final themeColor = Theme.of(context).colorScheme;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 4),
       child: TextButton(
@@ -33,7 +33,7 @@ class _RatingButtonState extends State<RatingButton> {
         },
         style: TextButton.styleFrom(
           backgroundColor:
-              isChanged ? themeColor.onSurface : themeColor.onPrimaryContainer,
+              isChanged ? lightColorScheme.onSurface : lightColorScheme.primary,
           shape: RoundedRectangleBorder(
             borderRadius:
                 isChanged
@@ -46,7 +46,10 @@ class _RatingButtonState extends State<RatingButton> {
           style: TextStyle(
             fontSize: 23,
             fontWeight: FontWeight.bold,
-            color: isChanged ? themeColor.surface : themeColor.onSurface,
+            color:
+                isChanged
+                    ? lightColorScheme.surface
+                    : lightColorScheme.onSurface,
           ),
         ),
       ),

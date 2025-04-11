@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
+  final void Function(String) onChanged;
   const CustomTextField({
     super.key,
     required this.controller,
     required this.label,
+    required this.onChanged,
   });
 
   @override
@@ -18,7 +20,7 @@ class CustomTextField extends StatelessWidget {
           border: OutlineInputBorder(),
           label: Text(label),
         ),
-
+        onChanged: onChanged,
         controller: controller,
         autocorrect: true,
         enableSuggestions: true,

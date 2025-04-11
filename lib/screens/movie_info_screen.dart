@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../data/movies_data.dart';
 import '../models/movie.dart';
 import '../widgets/custom_tile.dart';
@@ -37,7 +36,6 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(movie.title)),
       body: SingleChildScrollView(
@@ -45,29 +43,36 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
           child: Center(
             child: Column(
               children: [
-                Image.network(
-                  movie.image,
-                  height: 200,
-                  width: 200,
-                  fit: BoxFit.cover,
+                Container(
+                  margin: EdgeInsets.all(10),
+                  width: 350,
+                  height: 320,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: NetworkImage(movie.image),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
+                CustomTile(title: 'Title', subtitle: movie.title),
                 CustomTile(title: 'Year of product', subtitle: movie.year),
                 CustomTile(title: 'Description', subtitle: movie.description),
-
-                RatingSystem(
-                  selectRating: (selectedRating) {
-                    setState(() {
-                      rating = selectedRating;
-                      movie.rating = selectedRating;
-                    });
-                  },
-                ),
+                if (movie.isWatched == true)
+                  RatingSystem(
+                    selectRating: (selectedRating) {
+                      setState(() {
+                        rating = selectedRating;
+                        movie.rating = selectedRating;
+                      });
+                    },
+                  ),
                 SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.change_circle, size: 36),
-                    TextButton(
+                    ElevatedButton(
                       onPressed: () {
                         changeStatusOfMovie(movie);
                         if (movie.isWatched == false) {
@@ -76,7 +81,6 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
                       },
                       child: Text(
                         movie.isWatched ? 'Back to Watch' : 'Watched',
-                        style: theme.textTheme.titleMedium,
                       ),
                     ),
                   ],

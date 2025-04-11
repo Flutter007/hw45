@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hw45/data/movies_data.dart';
-
-import '../widgets/movie_card.dart';
+import 'package:hw45/widgets/grid_movie_builder.dart';
 import 'movie_info_screen.dart';
 
 class GoingToWatchScreen extends StatefulWidget {
@@ -18,27 +17,16 @@ class _GoingToWatchScreenState extends State<GoingToWatchScreen> {
       MaterialPageRoute(builder: (ctx) => MovieInfoScreen(movieId: id)),
     );
     setState(() {
-      //
+      //updated State;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final sortedMovie =
-        moviesData.where((element) => element.isWatched == false).toList();
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 30,
-        mainAxisSpacing: 10,
-        mainAxisExtent: 280,
-      ),
-      itemBuilder:
-          (ctx, index) => MovieCard(
-            movie: sortedMovie[index],
-            onTap: () => goToWatch(sortedMovie[index].id),
-          ),
-      itemCount: sortedMovie.length,
+    return GridMovieBuilder(
+      goToWatch: goToWatch,
+      movies:
+          moviesData.where((element) => element.isWatched == false).toList(),
     );
   }
 }

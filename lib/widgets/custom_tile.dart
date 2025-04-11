@@ -9,10 +9,10 @@ class CustomTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(4),
       child: ListTile(
-        title: Text(title, style: theme.textTheme.titleMedium),
-        subtitle: Text(subtitle, style: theme.textTheme.bodyMedium),
+        title: Text(title, style: theme.textTheme.titleLarge),
+        subtitle: Text(subtitle, style: theme.textTheme.titleSmall),
       ),
     );
   }
