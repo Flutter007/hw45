@@ -62,34 +62,38 @@ class _MovieFormState extends State<MovieForm> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          CustomTextField(
-            controller: movieNameController,
-            label: 'Movie name',
-            onChanged: (value) => validForm(),
-          ),
-          CustomTextField(
-            controller: movieYearController,
-            label: 'Year',
-            onChanged: (value) => validForm(),
-          ),
-          CustomTextField(
-            controller: movieDescriptionController,
-            label: 'Description',
-            onChanged: (value) => validForm(),
-          ),
-          CustomTextField(
-            controller: movieImageController,
-            label: 'Image',
-            onChanged: (value) => validForm(),
-          ),
-          ElevatedButton(
-            onPressed: isCorrectFilled ? addMovie : null,
-            child: Text('Add Movie'),
-          ),
-        ],
+    return Scaffold(
+      appBar: AppBar(title: Text('Add movie!')),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomTextField(
+              controller: movieNameController,
+              label: 'Movie name',
+              onChanged: (value) => validForm(),
+            ),
+            CustomTextField(
+              controller: movieYearController,
+              label: 'Year',
+              onChanged: (value) => validForm(),
+            ),
+            CustomTextField(
+              controller: movieDescriptionController,
+              label: 'Description',
+              onChanged: (value) => validForm(),
+            ),
+            CustomTextField(
+              controller: movieImageController,
+              label: 'Image',
+              onChanged: (value) => validForm(),
+            ),
+            ElevatedButton(
+              onPressed: isCorrectFilled ? addMovie : null,
+              child: Text('Add Movie'),
+            ),
+          ],
+        ),
       ),
     );
   }

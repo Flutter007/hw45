@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hw45/app_routes.dart';
 import 'package:hw45/screens/going_to_watch_screen.dart';
-import 'package:hw45/screens/movie_form_screen.dart';
 import 'package:hw45/screens/watched_movies_screen.dart';
 
 class Hw45 extends StatefulWidget {
@@ -11,23 +11,29 @@ class Hw45 extends StatefulWidget {
 }
 
 class _Hw45State extends State<Hw45> {
+  void addMovieForm() async {
+    await Navigator.of(context).pushNamed(AppRoutes.movieForm);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Movies App'),
+          actions: [
+            IconButton(onPressed: addMovieForm, icon: Icon(Icons.edit)),
+          ],
           bottom: TabBar(
             tabs: [
               Tab(icon: Icon(Icons.movie), text: 'Going to watch'),
               Tab(icon: Icon(Icons.next_plan), text: 'Watched'),
-              Tab(icon: Icon(Icons.edit), text: 'Add new Film'),
             ],
           ),
         ),
         body: TabBarView(
-          children: [GoingToWatchScreen(), WatchedMoviesScreen(), MovieForm()],
+          children: [GoingToWatchScreen(), WatchedMoviesScreen()],
         ),
       ),
     );
