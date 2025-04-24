@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hw45/models/movie.dart';
-import '../data/movies_data.dart';
+import '../app_routes.dart';
+import '../provider/list_of_movies_provider.dart';
 import '../widgets/custom_text_field.dart';
 
 class MovieForm extends StatefulWidget {
@@ -17,10 +18,8 @@ class _MovieFormState extends State<MovieForm> {
   var movieImageController = TextEditingController();
   bool isCorrectFilled = false;
 
-  void addNewMovie(Movie newMovie) {
-    setState(() {
-      moviesData.add(newMovie);
-    });
+  void goToHome() async {
+    await Navigator.of(context).pushNamed(AppRoutes.home);
   }
 
   void validForm() {
@@ -43,7 +42,9 @@ class _MovieFormState extends State<MovieForm> {
       year: movieYearController.text,
       description: movieDescriptionController.text,
     );
-    addNewMovie(newMovie);
+    final provider = ListOfMoviesProvider.of(context)!;
+    provider.addMovie(newMovie);
+    goToHome();
     isCorrectFilled = false;
     movieDescriptionController.clear();
     movieImageController.clear();

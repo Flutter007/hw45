@@ -6,7 +6,7 @@ class ListOfMoviesProvider extends InheritedWidget {
   final List<Movie> movies;
   final Function(Movie) addMovie;
   final Function(Movie) changeStatusOfMovie;
-  final Function(Movie) changeRating;
+  final Function(Movie, int newRating) changeRating;
 
   const ListOfMoviesProvider({
     super.key,
@@ -22,6 +22,6 @@ class ListOfMoviesProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(ListOfMoviesProvider oldWidget) {
-    return true;
+    return oldWidget.movies != movies;
   }
 }

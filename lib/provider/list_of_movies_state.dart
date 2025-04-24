@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:hw45/provider/list_of_movies_provider.dart';
 import '../data/movies_data.dart';
 import '../models/movie.dart';
 
@@ -30,8 +30,23 @@ class _ListOfMoviesStateState extends State<ListOfMoviesState> {
     });
   }
 
+  void changeRating(Movie movie, int? newRating) {
+    setState(() {
+      movies =
+          movies.map((m) {
+            return m.id == movie.id ? movie.copyWith(rating: newRating) : m;
+          }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ListOfMoviesProvider(
+      movies: movies,
+      addMovie: addMovie,
+      changeStatusOfMovie: changeStatusOfMovie,
+      changeRating: changeRating,
+      child: widget.child,
+    );
   }
 }

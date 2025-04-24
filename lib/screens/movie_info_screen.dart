@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import '../data/movies_data.dart';
 import '../models/movie.dart';
+import '../provider/list_of_movies_provider.dart';
 import '../widgets/custom_tile.dart';
 import '../widgets/rating_system.dart';
 
 class MovieInfoScreen extends StatefulWidget {
-  final String movieId;
-  const MovieInfoScreen({super.key, required this.movieId});
+  const MovieInfoScreen({super.key});
 
   @override
   State<MovieInfoScreen> createState() => _MovieInfoScreenState();
@@ -15,23 +14,20 @@ class MovieInfoScreen extends StatefulWidget {
 class _MovieInfoScreenState extends State<MovieInfoScreen> {
   late Movie movie;
   int? rating;
-
+  late List<Movie> movies;
+  late ListOfMoviesProvider provider;
   @override
-  void initState() {
-    super.initState();
-    movie = moviesData.firstWhere((element) => element.id == widget.movieId);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final argument = ModalRoute.of(context)!.settings.arguments as String;
+    final movieId = argument;
+    provider = ListOfMoviesProvider.of(context)!;
+    movies = provider.movies;
+    movie = movies.firstWhere((m) => m.id == movieId);
   }
 
   void changeStatusOfMovie(Movie movie) {
-    setState(() {
-      movie.isWatched = !movie.isWatched;
-    });
-  }
-
-  void changeRating(Movie movie) {
-    setState(() {
-      movie.rating = rating;
-    });
+    provider.changeStatusOfMovie(movie);
   }
 
   @override
@@ -62,8 +58,9 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
                   RatingSystem(
                     selectRating: (selectedRating) {
                       setState(() {
-                        rating = selectedRating;
-                        movie.rating = selectedRating;
+                        final provider = ListOfMoviesProvider.of(context)!;
+
+                        provider.changeRating(movie, selectedRating);
                       });
                     },
                   ),
