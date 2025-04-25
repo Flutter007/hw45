@@ -8,8 +8,8 @@ class Movie {
   final String image;
   final String year;
   final String description;
-  bool isWatched;
-  int? rating;
+  final bool isWatched;
+  final int? rating;
 
   Movie({
     String? id,

@@ -19,8 +19,7 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final argument = ModalRoute.of(context)!.settings.arguments as String;
-    final movieId = argument;
+    final movieId = ModalRoute.of(context)!.settings.arguments as String;
     provider = ListOfMoviesProvider.of(context)!;
     movies = provider.movies;
     movie = movies.firstWhere((m) => m.id == movieId);
@@ -58,8 +57,6 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
                   RatingSystem(
                     selectRating: (selectedRating) {
                       setState(() {
-                        final provider = ListOfMoviesProvider.of(context)!;
-
                         provider.changeRating(movie, selectedRating);
                       });
                     },
@@ -73,7 +70,7 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
                       onPressed: () {
                         changeStatusOfMovie(movie);
                         if (movie.isWatched == false) {
-                          movie.rating = null;
+                          movie = movie.copyWith(rating: null);
                         }
                       },
                       child: Text(

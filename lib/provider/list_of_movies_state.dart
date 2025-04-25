@@ -13,6 +13,7 @@ class ListOfMoviesState extends StatefulWidget {
 
 class _ListOfMoviesStateState extends State<ListOfMoviesState> {
   List<Movie> movies = List.of(moviesData);
+
   void addMovie(Movie newMovie) {
     setState(() {
       movies = [...movies, newMovie];

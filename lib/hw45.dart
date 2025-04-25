@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hw45/app_routes.dart';
-import 'package:hw45/screens/going_to_watch_screen.dart';
-import 'package:hw45/screens/watched_movies_screen.dart';
+import 'package:hw45/provider/list_of_movies_state.dart';
+import 'package:hw45/screens/movie_form_screen.dart';
+import 'package:hw45/screens/movie_info_screen.dart';
+import 'package:hw45/screens/start_screen.dart';
+import 'package:hw45/theme/light_theme.dart';
 
 class Hw45 extends StatefulWidget {
   const Hw45({super.key});
@@ -11,30 +14,17 @@ class Hw45 extends StatefulWidget {
 }
 
 class _Hw45State extends State<Hw45> {
-  void addMovieForm() async {
-    await Navigator.of(context).pushNamed(AppRoutes.movieForm);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Movies App'),
-          actions: [
-            IconButton(onPressed: addMovieForm, icon: Icon(Icons.edit)),
-          ],
-          bottom: TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.movie), text: 'Going to watch'),
-              Tab(icon: Icon(Icons.next_plan), text: 'Watched'),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: [GoingToWatchScreen(), WatchedMoviesScreen()],
-        ),
+    return ListOfMoviesState(
+      child: MaterialApp(
+        theme: lightTheme,
+        initialRoute: AppRoutes.home,
+        routes: {
+          AppRoutes.home: (ctx) => StartScreen(),
+          AppRoutes.movieForm: (ctx) => MovieForm(),
+          AppRoutes.movieInfo: (ctx) => MovieInfoScreen(),
+        },
       ),
     );
   }
